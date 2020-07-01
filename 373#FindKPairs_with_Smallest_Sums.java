@@ -68,24 +68,41 @@ public class KSmallestSum {
 	List<Integer> numbersList = new ArrayList<Integer>(s) ;        //set -> list
 	 
 	//Sort the list
-	/*Collections.sort(numbersList);
+	Collections.sort(numbersList);
 	int i  =0;
 	for (Integer key : numbersList) 
 	{
-		System.out.println(key + "=" + map.get(key));
-		ListNode x = map.get(key);
-		result.add(Arrays.asList(x.val));
-		while(x.next!=null)
+		//System.out.println(key + "=" + map.get(key));
+		ListNode x = map.get(key);//take first Key's value
+		if (x.next==null && result.get(0).size()<k) //only one pair for a Key
 		{
-			if (result.get(0).size()<k)
+			result.add(Arrays.asList(x.val));
+			System.out.println("val in if " + "=" + x.val);
+			k--;
+		}
+		else //Multiple pairs
+		{
+			while(x.next!=null && result.get(0).size()<k)
 			{
-				result.add(Arrays.asList());
+				//if (result.get(0).size()<k)
+				{
+					result.add(Arrays.asList(x.val));
+					System.out.println("vak in else " + "=" + x.val);
+					x = x.next;
+					k--;
+				}
 			}
+			if (result.get(0).size()<k) 
+			{
+				result.add(Arrays.asList(x.val));
+				k--;
+			}
+			
 		}
 	}
 	
 	//result.add(Arrays.asList(1, 2));
-	 * */
+
 	 
 	return result;
     }
@@ -106,24 +123,25 @@ public class KSmallestSum {
     		}
     		 // Or something as per temp defination. can be used
     	}
+    	System.out.println("Done printHashMap!!"); 
     }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] arr1 = {1,1,3,4};
-		int[] arr2 = {2,1,4};
+		int[] arr1 = {1,2};
+		int[] arr2 = {3};
 		int k = 3;
 		
 		List<List<String>> out = kSmallestPairs(arr1,arr2,k);
 		printHashMap();
 		
-		/*for (int i = 0; i < out.size(); i++) 
+		for (int i = 0; i < out.size(); i++) 
 		{ 
             for (int j = 0; j < out.get(i).size(); j++) 
             { 
                 System.out.print(out.get(i).get(j) + " "); 
             } 
             System.out.println(); 
-        } */
+        } 
 		System.out.println("Done!!"); 
 	}
 
